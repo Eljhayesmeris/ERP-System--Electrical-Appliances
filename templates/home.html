@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Electrical Appliance Store{% endblock %}
+
+{% block content %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="background-color: rgb(228, 221, 221);">
+
+<div class="container">
+    <h1 class="text-center mt-5">DASHBOARD</h1>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title text-center"><i class="fas fa-users"></i> {{ num_buyers }}</h1>
+                <h5 class="card-text text-center">Buyers Accounts</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title text-center"><i class="fas fa-store"></i> {{ num_sellers }}</h1>
+                <h5 class="card-text text-center">Sellers Accounts</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title text-center"><i class="fas fa-money"></i> 11</h1>
+                <h5 class="card-text text-center">Payout Requests</h5>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title text-center"><i class="fas fa-users"></i> {{ total_users }}</h1>
+                <h5 class="card-text text-center">Total Users</h5>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div class="col-md-13">
+    <!-- Expand your graph container to fill the available space -->
+    <div class="card" style=" margin-top: 10px; margin-bottom: 10px;">
+        <div class="card-body" style="opacity: 0.8;"> <!-- Adjust opacity value as needed -->
+            <!-- Set a fixed aspect ratio for your graph container (e.g., 16:9) -->
+            <div style="padding-bottom: 56.25%; position: relative; height: 0;">
+                <!-- Set the graph image to fill the container -->
+                <img src="data:image/png;base64,{{ chart_base64 }}" alt="Bar Chart" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-md-6">
+        <!-- Other content or data -->
+    </div>
+</div>
+
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

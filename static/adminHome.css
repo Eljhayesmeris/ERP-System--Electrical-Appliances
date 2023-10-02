@@ -1,0 +1,17 @@
+.awe {
+    background-color: aqua;
+    color: aqua;
+}
+
+#aa {
+    transition-duration: 0.5;
+}
+
+#aa:hover {
+    background-color: aqua;
+    color: aquamarine;
+}
+
+.test {
+    color: blue;
+}

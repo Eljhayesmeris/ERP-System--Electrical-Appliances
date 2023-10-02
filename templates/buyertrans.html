@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <title>{% block title %}Buyer Dashboard{% endblock %}</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbar"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar">
+    <div class="navbar-nav flex-grow-1">
+      {% if user.is_authenticated %}
+      <a class="nav-item nav-link" id="buyer" href="buyer">
+        <i class="fa fa-home"></i> Home
+      </a>
+      <a class="nav-item nav-link" id="buyertrans" href="buyertrans"> <!-- Add html for transactions -->
+        <i class="fa fa-exchange"></i> My Transactions <!-- Updated icon to fa-exchange for transactions -->
+      </a>   
+      <a class="nav-item nav-link" id="addtocart" href="addtocart">
+        <i class="fa fa-shopping-cart"></i> Add to Cart
+    </a>    
+      <div class="navbar-nav">
+        <!-- ... other navbar items ... -->
+        {% if user.is_authenticated %}
+          <a class="nav-item nav-link" id="credit-balance" href="#">
+            <i class="fa fa-money"></i> Credit Balance: <!--${{ user.credit_balance }}-->
+          </a>
+        {% endif %}
+      </div>     
+      </div>
+      <form class="form-inline my-2 my-lg-0 flex-grow-1 justify-content-end">
+        <div class="input-group">
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-link" type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </form> 
+      {% else %}
+      <a class="nav-item nav-link" id="login" href="login">
+        <i class="fa fa-sign-in"></i> Login
+      </a>
+      <a class="nav-item nav-link" id="signUp" href="sign-up">
+        <i class="fa fa-user-plus"></i> Sign Up
+      </a>
+      {% endif %}
+    </div>
+    <div class="text-center" style="margin-top: 15px;">   
+        <p><strong><i class="fas fa-user"></i> Username:</strong> {{ user.username }}</p>
+    </div>    
+    {% if user.is_authenticated %}
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" id="account" href="/account">
+        <i class="fa fa-user"></i> My Account
+      </a>
+      <a class="nav-item nav-link" id="logout" href="logout">
+        <i class="fa fa-sign-out"></i> Logout
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</nav>
+
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+          {% if category == 'error' %}
+          <div class="alert-danger alter-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% else %}
+          <div class="alert-success alter-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endif %}
+          {% endfor %}
+        {% endif %}  
+      {% endwith %} 
+      
+      <div class="container">{% block content%} {% endblock %}</div>
+      <h1>This is Buyer's Transactions</h1>
+
+      
+      
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='index.js')}}"></script>
+</body>
+</html>

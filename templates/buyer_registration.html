@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h3 align="center">Sign up as a Buyer</h3>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address" required/>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required/>
+                </div>
+                <div class="form-group password-input">
+                    <label for="password1">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter Password" required/>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="show-password-toggle1">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group password-input">
+                    <label for="password2">Confirm Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required/>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="show-password-toggle2">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <label for="full-name">Full Name</label>
+                <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Enter Full Name" />
+                <label for="contact-number">Contact Number</label>
+                <input type="text" class="form-control" id="contact-number" name="contact-number" placeholder="Enter Contact Number" />
+                <label for="buyer-address">Address</label>
+                <input type="text" class="form-control" id="buyer-address" name="buyer-address" placeholder="Enter Address" />
+                
+                <!-- Modal -->
+                <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h1>Terms and Conditions</h1>
+                                <p>These terms and conditions govern your use of our platform. Please read them carefully before proceeding.</p>
+                            
+                                <!-- Section 1: Account Registration -->
+                                <h2>1. Account Registration</h2>
+                                <p>1.1. By using this website, you agree to these terms and conditions. We may update them from time to time. If you do not agree, please do not use the website.</p>
+                                <p>1.2. Buyers and sellers, may be required to register an account.</p>
+                                <p>1.3. You agree to provide accurate and complete information during the registration process.</p>
+                                <p>1.4. You are responsible for maintaining the confidentiality of your account information and password.</p>
+                            
+                                <!-- Section 2: Orders & Payment -->
+                                <h2>2. Orders & Payment</h2>
+                                <p>2.1. Buyers agree to pay for products they purchase.</p>
+                                <p>2.2. Payment can be made through Cash on Delivery (COD) or online payment methods.</p>
+                            
+                                <!-- Section 3: Return/Refund/Store Credit -->
+                                <h2>3. Return/Refund/Store Credit</h2>
+                                <p>3.1. Buyers may request returns or refunds, supported by evidence such as a video of opening the parcel.</p>
+                                <p>3.2. Refunds will be added to the buyer's store credit balance for future purchases.</p>
+                            
+                                <!-- Section 4: Shipping & Delivery Policy -->
+                                <h2>4. Shipping & Delivery Policy</h2>
+                                <p>4.1. Sellers are responsible for shipping and delivering products to buyers within specified timeframes.</p>
+                                <p>4.2. Users must provide a valid shipping address.</p>
+                            
+                                <!-- Section 5: Inactivity Policy/Deletion of Account -->
+                                <h2>5. Inactivity Policy/Deletion of Account</h2>
+                                <p>5.1. User accounts that remain inactive for six months may be suspended or terminated by administrators.</p>
+                            
+                                <!-- Section 6: Termination of Services -->
+                                <h2>6. Termination of Services</h2>
+                                <p>6.1. We reserve the right to cancel orders if sellers do not ship products on time.</p>
+                            
+                                <!-- Section 7: Duties & Responsibilities -->
+                                <h2>7. Duties & Responsibilities</h2>
+                                <h3>7.1. Users (Buyers and Sellers)</h3>
+                                <ul>
+                                    <li>7.1.1. Users agree to use the platform in accordance with all applicable laws and regulations.</li>
+                                    <li>7.1.2. Users agree not to engage in fraudulent or harmful activities on the platform.</li>
+                                    <li>7.1.3. Users are responsible for the accuracy of the information in their profiles and listings.</li>
+                                    <li>7.1.4. Users are responsible for resolving disputes with other users fairly and promptly.</li>
+                                    <li>7.1.5. Users agree to communicate respectfully and professionally with other users.</li>
+                                </ul>
+                                <h3>7.2. Administrators</h3>
+                                <ul>
+                                    <li>7.2.1. Administrators maintain the platform and ensure its proper functioning.</li>
+                                    <li>7.2.2. Administrators enforce these terms and conditions and take actions against violators.</li>
+                                    <li>7.2.3. Administrators may suspend or terminate user accounts for violations.</li>
+                                </ul>
+                                <h3>7.3. Sellers</h3>
+                                <ul>
+                                    <li>7.3.1. Sellers provide accurate product descriptions, including prices and information.</li>
+                                    <li>7.3.2. Sellers fulfill orders promptly and deliver products as described.</li>
+                                    <li>7.3.3. Sellers handle returns and refunds per platform policies.</li>
+                                </ul>
+                            
+                                <!-- Section 8: Data Privacy & Security -->
+                                <h2>8. Data Privacy & Security</h2>
+                                <p>8.1. We protect your personal information in accordance with our Privacy Policy.</p>
+                            
+                                <!-- Section 9: Termination -->
+                                <h2>9. Termination</h2>
+                                <p>9.1. We may terminate accounts or access at our discretion, without notice, for violations.</p>
+                            
+                                <!-- Section 10: Limitation of Liability -->
+                                <h2>10. Limitation of Liability</h2>
+                                <p>10.1. We are not liable for damages, losses, or disputes arising from platform use or transactions.</p>
+                            
+                                <!-- Section 12: Credit -->
+                                <h2>11. Credit</h2>
+                                <p>11.1. Users may earn or purchase credits for specific features or services, subject to policies and guidelines.</p>
+                            
+                                <!-- Section 13: Governing Law -->
+                                <h2>12. Governing Law</h2>
+                                <p>12.1. These terms are governed by the laws of the Republic of the LSPU-CCS.</p>
+                                <p>12.2. Disputes will be resolved in Republic of the LSPU-CCS courts.</p>
+
+                                <!-- Section 15: Payout Request for Sellers -->
+                                <h2>13. Payout Request for Sellers</h2>
+                                <p>13.1. Sellers may request a payout of their earnings from the platform.</p>
+                                <p>13.2. To be eligible for a payout, a seller must have a remaining balance not lower than 1000 pesos.</p>
+                                <p>13.3. Payout requests must be submitted through the platform's designated process.</p>
+                                <p>13.4. The platform will process payout requests in a timely manner, subject to applicable processing fees.</p>
+                                <p>13.5. Sellers are responsible for providing accurate payout information, such as bank account details, for processing.</p>
+                                <p>13.6. The platform reserves the right to withhold payouts or take appropriate actions if it suspects fraudulent activity or violations of these terms and conditions.</p>
+
+                            
+                                <!-- Section 14: Contact Information -->
+                                <h2>14. Contact Information</h2>
+                                <p>If you have questions or concerns, contact us at <a href="mailto:ElectroMart@gmail.com">ElectroMart@gmail.com</a>.</p>
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group text-center">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="agreeTerms" name="agreeTerms" required>
+        <label class="form-check-label" for="agreeTerms">
+            By submitting, I agree to the <a href="#" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a>
+        </label>
+    </div>
+</div>
+<div class="form-group text-center"> <!-- Center-align the submit button -->
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+</div>
+</form>
+
+<script>
+    console.log("Script loaded");
+    document.addEventListener("DOMContentLoaded", function () {
+        const passwordInput1 = document.getElementById("password1");
+        const passwordToggle1 = document.getElementById("show-password-toggle1");
+        const passwordInput2 = document.getElementById("password2");
+        const passwordToggle2 = document.getElementById("show-password-toggle2");
+
+        passwordToggle1.addEventListener("click", function () {
+            if (passwordInput1.type === "password") {
+                passwordInput1.type = "text";
+            } else {
+                passwordInput1.type = "password";
+            }
+        });
+
+        passwordToggle2.addEventListener("click", function () {
+            if (passwordInput2.type === "password") {
+                passwordInput2.type = "text";
+            } else {
+                passwordInput2.type = "password";
+            }
+        });
+    });
+</script>
+
+
+{% endblock %}

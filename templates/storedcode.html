@@ -1,0 +1,292 @@
+<form method="POST">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+    <h3 align="center">Sign up</h3>
+    <div class="form-group">
+                    <label for="role">Role</label>
+                    <select class="form-control" id="role" name="role" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                    </select>
+    </div>
+                <!-- Additional fields for Buyer -->
+                <div id="buyer-fields" class="form-group" style="display: none;">
+                <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address" required/>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required/>
+            </div>
+    <div class="form-group password-input">
+                <label for="password1">Password</label>
+        <div class="input-group">
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter Password" required/>
+            <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="show-password-toggle1">
+                    <i class="fa fa-eye"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group password-input">
+                <label for="password2">Confirm Password</label>
+        <div class="input-group">
+                    <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required/>
+            <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="show-password-toggle2">
+                    <i class="fa fa-eye"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+        <label for="full-name">Full Name</label>
+        <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Enter Full Name" />
+        <label for="contact-number">Contact Number</label>
+        <input type="text" class="form-control" id="contact-number" name="contact-number" placeholder="Enter Contact Number" />
+        <label for="buyer-address">Address</label>
+        <input type="text" class="form-control" id="buyer-address" name="buyer-address" placeholder="Enter Address" />
+    </div>
+    
+    <!-- Additional fields for Seller -->
+    <div id="seller-fields" class="form-group" style="display: none;">        
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email1" name="email1" placeholder="Enter Email Address" required/>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username1" name="username1" placeholder="Enter Username" required/>
+            </div>
+                    <div class="form-group password-input">
+                <label for="password1">Password</label>
+                        <div class="input-group">
+                    <input type="password" class="form-control" id="password3" name="password3" placeholder="Enter Password" required/>
+                            <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="show-password-toggle3">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group password-input">
+                <label for="password2">Confirm Password</label>
+                        <div class="input-group">
+                    <input type="password" class="form-control" id="password4" name="password4" placeholder="Confirm Password" required/>
+                            <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="show-password-toggle4">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+        <label for="full-name">Full Name</label>
+        <input type="text" class="form-control" id="full-name1" name="full-name1" placeholder="Enter Full Name" />
+        <label for="contact-number1">Contact Number</label>
+        <input type="text" class="form-control" id="contact-number1" name="contact-number1" placeholder="Enter Contact Number" />
+        <label for="seller-address">Address</label>
+        <input type="text" class="form-control" id="seller-address" name="seller-address" placeholder="Enter Address" />
+    
+        <!-- Shop Info Fields -->
+        <label for="shop-name">Shop Name</label>
+        <input type="text" class="form-control" id="shop-name" name="shop-name" placeholder="Enter Shop Name" />
+        <label for="shop-description">Shop Description</label>
+        <input type="text" class="form-control" id="shop-description" name="shop-description" placeholder="Enter Shop Description" />
+        <label for="shop-Address">Shop Address</label>
+        <input type="text" class="form-control" id="shop-Address" name="shop-Address" placeholder="Enter Shop Address" />
+    </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <h1>Terms and Conditions</h1>
+                
+                                <p>These are the terms and conditions for using our platform. Please read them carefully before proceeding.</p>
+                            
+                                <h2>1. Acceptance of Terms</h2>
+                                <p>By using this website, you agree to be bound by these terms and conditions, which may be updated by us from
+                                    time to time. If you do not agree with these terms and conditions, please do not use this website.</p>
+                            
+                                <h2>2. Registration</h2>
+                                <p>2.1. Buyers, sellers, and administrators may be required to register an account.</p>
+                                <p>2.2. You agree to provide accurate and complete information during the registration process.</p>
+                                <p>2.3. You are responsible for maintaining the confidentiality of your account information and password.</p>
+                            
+                                <h2>3. Responsibilities</h2>
+                                <h3>3.1. Users (Buyers and Sellers)</h3>
+                                <ul>
+                                    <li>Users agree to use the platform in accordance with all applicable laws and regulations.</li>
+                                    <li>Users agree not to engage in fraudulent or harmful activities on the platform.</li>
+                                    <li>Users are responsible for the accuracy of the information they provide in their profiles and listings.</li>
+                                    <li>Users are responsible for resolving disputes with other users in a fair and timely manner.</li>
+                                    <li>Users agree to communicate respectfully and professionally with other users.</li>
+                                </ul>
+                            
+                                <h3>3.2. Administrators</h3>
+                                <ul>
+                                    <li>Administrators are responsible for maintaining the platform and ensuring its proper functioning.</li>
+                                    <li>Administrators may enforce these terms and conditions and take appropriate actions against users who violate
+                                        them.</li>
+                                    <li>Administrators may, at their discretion, suspend or terminate user accounts for violations.</li>
+                                </ul>
+                            
+                                <h3>3.3. Sellers</h3>
+                                <ul>
+                                    <li>Sellers agree to provide accurate product descriptions, including prices and product information.</li>
+                                    <li>Sellers agree to fulfill orders promptly and deliver products as described.</li>
+                                    <li>Sellers agree to handle returns and refunds in accordance with the platform's policies.</li>
+                                </ul>
+                            
+                                <h2>4. Buying and Selling</h2>
+                                <p>4.1. Buyers agree to pay for products they purchase.</p>
+                                <p>4.2. Sellers agree to provide accurate product descriptions, fulfill orders promptly, and resolve disputes with
+                                    buyers.</p>
+                            
+                                <h2>5. Product Listings</h2>
+                                <p>5.1. Sellers are responsible for the accuracy of product listings, including prices and product information.</p>
+                                <p>5.2. Listings must comply with our guidelines and applicable laws.</p>
+                            
+                                <h2>6. Payment</h2>
+                                <p>6.1. Buyers agree to pay for products using the provided payment methods.</p>
+                                <p>6.2. Sellers agree to receive payments through our platform.</p>
+                            
+                                <h2>7. Shipping and Delivery</h2>
+                                <p>7.1. Sellers are responsible for shipping and delivering products to buyers within the specified timeframes.</p>
+                                <p>7.2. Buyers are responsible for providing accurate shipping information.</p>
+                            
+                                <h2>8. Returns and Refunds</h2>
+                                <p>8.1. Buyers may be eligible for returns and refunds as per our refund policy.</p>
+                                <p>8.2. Sellers must adhere to our return and refund guidelines.</p>
+                            
+                                <h2>9. Intellectual Property</h2>
+                                <p>9.1. All content on this website, including text, images, and logos, is protected by intellectual property
+                                    rights.</p>
+                                <p>9.2. You may not use, reproduce, or distribute any content without permission.</p>
+                            
+                                <h2>10. Privacy</h2>
+                                <p>10.1. We collect and use your personal information in accordance with our Privacy Policy, which can be found on
+                                    this website.</p>
+                            
+                                <h2>11. Termination</h2>
+                                <p>11.1. We reserve the right to terminate accounts or access to this website at our discretion, without notice,
+                                    for any violation of these terms and conditions.</p>
+                            
+                                <h2>12. Limitation of Liability</h2>
+                                <p>12.1. We are not liable for any damages, losses, or disputes arising from the use of this website or
+                                    transactions between buyers and sellers.</p>
+                            
+                                <h2>13. Account Inactivity</h2>
+                                <p>13.1. User accounts that remain inactive for an extended period may be subject to suspension or termination by
+                                    administrators.</p>
+                            
+                                <h2>14. Credit</h2>
+                                <p>14.1. Users may earn or purchase credits on the platform for specific features or services. The use of credits is
+                                    subject to our policies and guidelines.</p>
+                            
+                                <h2>15. Governing Law</h2>
+                                <p>15.1. These terms and conditions are governed by the laws of the Republic of the LSPU-CCS.</p>
+                                <p>15.2. Any disputes will be resolved in Republic of the LSPU-CCS courts.</p>
+                            
+                                <h2>16. Contact Information</h2>
+                                <p>If you have any questions or concerns about these terms and conditions, please contact us at
+                                    <a href="mailto:ElectroMart@gmail.com">ElectroMart@gmail.com</a>.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group text-center">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="agreeTerms" name="agreeTerms" required>
+        <label class="form-check-label" for="agreeTerms">
+            By submitting, I agree to the <a href="#" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a>
+        </label>
+    </div>
+</div>
+<div class="form-group text-center"> <!-- Center-align the submit button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>
+
+
+
+<script>
+    console.log("Script loaded");
+    document.addEventListener("DOMContentLoaded", function () {
+        const passwordInput1 = document.getElementById("password1");
+        const passwordToggle1 = document.getElementById("show-password-toggle1");
+        const passwordInput2 = document.getElementById("password2");
+        const passwordToggle2 = document.getElementById("show-password-toggle2");
+        const passwordInput3 = document.getElementById("password3");
+        const passwordToggle3 = document.getElementById("show-password-toggle3");
+        const passwordInput4 = document.getElementById("password4");
+        const passwordToggle4 = document.getElementById("show-password-toggle4");
+        const roleSelect = document.getElementById("role");
+        const buyerFields = document.getElementById("buyer-fields");
+        const sellerFields = document.getElementById("seller-fields");
+
+        passwordToggle1.addEventListener("click", function () {
+            if (passwordInput1.type === "password") {
+                passwordInput1.type = "text";
+            } else {
+                passwordInput1.type = "password";
+            }
+        });
+
+        passwordToggle2.addEventListener("click", function () {
+            if (passwordInput2.type === "password") {
+                passwordInput2.type = "text";
+            } else {
+                passwordInput2.type = "password";
+            }
+        });
+
+        passwordToggle3.addEventListener("click", function () {
+            if (passwordInput3.type === "password") {
+                passwordInput3.type = "text";
+            } else {
+                passwordInput3.type = "password";
+            }
+        });
+
+        passwordToggle4.addEventListener("click", function () {
+            if (passwordInput4.type === "password") {
+                passwordInput4.type = "text";
+            } else {
+                passwordInput4.type = "password";
+            }
+        });
+
+        roleSelect.addEventListener("change", function () {
+            const selectedRole = roleSelect.value;
+            if (selectedRole === "buyer") {
+                buyerFields.style.display = "block";
+                sellerFields.style.display = "none";
+            } else if (selectedRole === "seller") {
+                buyerFields.style.display = "none";
+                sellerFields.style.display = "block";
+            } else {
+                // For "admin" or when no role is selected
+                buyerFields.style.display = "none";
+                sellerFields.style.display = "none";
+            }
+        });
+    });
+</script>

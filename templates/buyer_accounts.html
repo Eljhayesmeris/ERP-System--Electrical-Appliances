@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='drop.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>/* styles.css */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 16px;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+        </style>
+  <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbar"
+  >
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar">
+      <div class="navbar-nav flex-grow-1">
+          {% if user.is_authenticated %}
+          <a class="nav-item nav-link" id="home" href="/">
+              <i class="fa fa-home"></i> Home
+          </a>
+          <a class="nav-item nav-link" id="buyer-accounts" href="buyer_accounts.html">
+            <i class="fas fa-user"></i> Buyer Accounts
+        </a>
+        <a class="nav-item nav-link" id="seller-accounts" href="seller_accounts.html">
+            <i class="fas fa-store"></i> Seller Accounts
+        </a>
+          <a class="nav-item nav-link" id="payout-request" href="payout-request">
+              <i class="fa fa-money"></i> Payout Request
+          </a>
+          <a class="nav-item nav-link" id="admintrans" href="admintrans">
+              <i class="fa fa-exchange"></i> My Transactions
+          </a>
+          </div>
+          <form class="form-inline my-2 my-lg-0 flex-grow-1 justify-content-end">
+              <div class="input-group">
+                  <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                  <div class="input-group-append">
+                      <button class="btn btn-link" type="submit"><i class="fa fa-search"></i></button>
+                  </div>
+              </div>
+          </form>
+          {% else %}
+          <a class="nav-item nav-link" id="login" href="login">
+              <i class="fa fa-sign-in"></i> Login
+          </a>
+          <!-- Modify the "Sign Up" link to include a dropdown -->
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="signupDropdown" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user-plus"></i> Sign Up
+              </a>
+              <div class="dropdown-menu" aria-labelledby="signupDropdown">
+                <a class="dropdown-item" id="buyer_registration" href="buyer_registration" style="color: #333; text-decoration: none;">
+                    <i class="fas fa-user" style="margin-right: 5px;"></i> Sign Up as Buyer
+                </a>
+                <a class="dropdown-item" id="seller_registration" href="seller_registration" style="color: #333; text-decoration: none;">
+                    <i class="fas fa-store" style="margin-right: 5px;"></i> Sign Up as Seller
+                </a>
+            </div>                      
+          </li>
+          {% endif %}
+      </div>
+      <div class="text-center" style="margin-top: 15px;">   
+        <p><strong><i class="fas fa-user-cog"></i> Username:</strong> {{ user.username }}</p>
+    </div>       
+      {% if user.is_authenticated %}
+      <div class="navbar-nav">
+          <a class="nav-item nav-link" id="account" href="/account">
+              <i class="fa fa-user"></i> My Account
+          </a>
+          <a class="nav-item nav-link" id="logout" href="logout">
+              <i class="fa fa-sign-out"></i> Logout
+          </a>
+      </div>
+      {% endif %}
+  </div>
+</nav>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+          {% if category == 'error' %}
+          <div class="alert-danger alter-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% else %}
+          <div class="alert-success alter-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endif %}
+          {% endfor %}
+        {% endif %}  
+      {% endwith %} 
+      
+      <div class="container">{% block content%} {% endblock %}</div>
+
+      <div class="container text-center">
+        <h1>Buyer Accounts</h1>
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Contact Number</th>
+                    <th>Address</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for buyer in buyers %}
+                <tr>
+                    <td>{{ buyer.id }}</td>
+                    <td>{{ buyer.full_name }}</td>
+                    <td>{{ buyer.contact_number }}</td>
+                    <td>{{ buyer.address }}</td>
+                    <td>
+                        <!-- Add an "Edit" button for each buyer's record -->
+                        <button type="button" class="btn btn-primary edit-button" data-toggle="dropdown">
+                            Edit
+                        </button>
+                        <div class="btn-group" style="display: none;">
+                            <button class="btn btn-secondary dropdown-toggle actions-button" data-toggle="dropdown">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu">
+                                <button class="dropdown-item">Archive</button>
+                                <button class="dropdown-item">Retrieve</button>
+                                <button class="dropdown-item">Ban</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <style>
+        /* Style the "Edit" button */
+        .edit-button {
+            background-color: #007bff; /* Change the background color */
+            color: #fff; /* Change the text color */
+            border: none; /* Remove the border */
+            padding: 6px 12px; /* Adjust padding as needed */
+            width: 70%;
+            margin-bottom: 10px;
+        }
+    
+        /* Style the "Actions" button */
+        .actions-button {
+            background-color: #6c757d; /* Change the background color */
+            color: #fff; /* Change the text color */
+            border: none; /* Remove the border */
+            padding: 6px 12px; /* Adjust padding as needed */
+        }
+    
+        /* Style the dropdown items */
+        .dropdown-item {
+            color: #333; /* Change the text color */
+        }
+    </style>
+    
+    <script>
+        // Add JavaScript to enable the drop-down buttons when the "Edit" button is clicked
+        const editButtons = document.querySelectorAll('.edit-button');
+        editButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const dropdown = button.nextElementSibling;
+                if (dropdown.style.display === 'none') {
+                    dropdown.style.display = 'block';
+                } else {
+                    dropdown.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
+  
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='index.js')}}"></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<!-- Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

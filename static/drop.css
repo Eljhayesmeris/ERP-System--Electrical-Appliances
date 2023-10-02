@@ -1,0 +1,22 @@
+/* drop.css */
+.dropdown-item {
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-item i {
+    margin-right: 5px;
+}
+
+/* styles.css */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 1px solid #13273a;
+    padding: 8px;
+}
+
